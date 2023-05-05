@@ -5,23 +5,27 @@ import EmployeeTurn from './components/EmployeeTurn';
 import { employeeType } from '../../types/employee.type';
 
 import EMPLOYEE_DATA from '../../dummy/employee.json'
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setEmployeeTurns } from '../../store/features/employeeTurn/employeeTurnSlice';
 
 const EmployeeTurnScreen: React.FC = () => {
 
     const [employeeList, setEmployeeList] = useState<employeeType[]>([])
+    const { employeeTurns } = useAppSelector(state => state.employeeTurn)
+    const disatch = useAppDispatch()
 
     useEffect(() => {
-        setEmployeeList(EMPLOYEE_DATA)
+        disatch(setEmployeeTurns({ employeeTurnList: EMPLOYEE_DATA }))
     }, [])
 
     return (
         <>
             <div>
                 {
-                    employeeList?.map((employee: employeeType, index) =>
+                    employeeTurns?.map((employee: employeeType, index: any) =>
                         <EmployeeTurn
                             employeeInfo={employee}
-                            key={index?.toString()}
+                            key={employee?.id.toString()}
                         />
                     )
                 }

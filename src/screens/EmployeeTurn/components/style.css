@@ -16,15 +16,36 @@
     margin-left: 12px;
 }
 
-.turn-tag{
+.turn-tag {
     display: flex;
     min-height: 60px;
     align-items: center;
     justify-content: center;
 }
 
-.employee-turn--container{
+.employee-turn--container {
     border-block-width: 1px;
     padding-bottom: 8px;
     padding: 12px;
 }
+
+
+.turn-item {
+    /* border-width: 1px; */
+    border-radius: 6px;
+    padding: 6px;
+    margin-right: 6px;
+    max-width: 200px;
+    min-width: 100px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: aquamarine;
+}
+
+.turn-item--id{
+    color: gray;
+}
+
+.turn-item-service {}

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, HTMLInputTypeAttribute, useEffect, useState } from 'react'
-import { Button, DatePicker, Form, Input, Modal, Space, Switch, TimePicker } from 'antd';
-import { DollarCircleOutlined, SmileOutlined } from '@ant-design/icons';
+import { Button, DatePicker, Form, Input, Modal, Popconfirm, Space, Switch, TimePicker } from 'antd';
+import { DollarCircleOutlined, QuestionCircleOutlined, SmileOutlined } from '@ant-design/icons';
 import { TurnType } from '../../../types/turn.type';
 import { useAppDispatch } from '../../../store/hooks';
 import { deleteEmployeeTurn } from '../../../store/features/employeeTurn/employeeTurnSlice';
@@ -57,13 +57,27 @@ const EditTurnModal = (props: Props) => {
             <Modal
                 title={`Edit Turn`}
                 open={props.isVisible}
-                closable={false}
+                closable={true}
+                onCancel={handleCancel}
                 footer={[
-                    <Button key="cancel" onClick={handleCancel}>
-                        Cancel
+                    <Popconfirm
+                        title="Delete the task"
+                        description="Are you sure to delete this task?"
+                        icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+                        onConfirm={handleConfirmDelete}
+                        okType='danger'
+                        key={'confirm-delete'}
+
+                    >
+                        <Button key="delete" type='default'  >
+                            Delete
+                        </Button>
+                    </Popconfirm>,
+                    <Button key="Update" onClick={handleOk}>
+                        Update
                     </Button>,
-                    <Button key="ok" onClick={handleOk}>
-                        OK
+                    <Button key="Cancel" onClick={handleCancel}>
+                        Cancel
                     </Button>
                 ]}
 
@@ -110,8 +124,7 @@ const EditTurnModal = (props: Props) => {
                             // onSelect={(value) => _onChangeEndDate(value)}
                             // showTime={true}
                             showSecond={false}
-                        // renderExtraFooter={()=><p>sdsa</p>}
-
+                            value={dayjs(turnInfo.end_at)}
                         />
                     </Form.Item>
 
