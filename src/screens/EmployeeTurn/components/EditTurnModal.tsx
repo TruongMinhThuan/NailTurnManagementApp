@@ -165,7 +165,7 @@ const EditTurnModal = (props: Props) => {
                     <Space direction="vertical">
 
                         <Switch
-                            checked={props.turnInfo?.is_done}
+                            checked={turnInfo?.is_done}
                             checkedChildren="Done"
                             unCheckedChildren="Todo"
                             style={{ background: props.turnInfo?.is_done ? '#1677FF' : 'gray' }}
