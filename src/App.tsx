@@ -4,6 +4,8 @@ import CommonTable from './components/tables/CommonTable';
 import { EmployeeTurnScreen } from './screens/EmployeeTurn';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import MenuNavigation from './components/navbar/MenuNavigation';
+import { RootRouter } from './routes';
 
 function App() {
   console.log(window.ipcRenderer);
@@ -19,6 +21,8 @@ function App() {
   //       setFromMain(message);
   //     });
   // }, [fromMain, isSent]);``
+  // return 
+
 
   return (
     <Provider store={store}>
@@ -28,7 +32,10 @@ function App() {
             <AppBar />
           </div>
         )}
-        <EmployeeTurnScreen />
+        {/* <MenuNavigation/>
+        <EmployeeTurnScreen /> */}
+
+        <RootRouter />
       </div>
     </Provider>
   );
