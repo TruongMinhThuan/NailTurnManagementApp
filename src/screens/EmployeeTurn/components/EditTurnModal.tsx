@@ -3,7 +3,7 @@ import { Button, DatePicker, Form, Input, Modal, Popconfirm, Space, Switch, Time
 import { DollarCircleOutlined, QuestionCircleOutlined, SmileOutlined } from '@ant-design/icons';
 import { TurnType } from '../../../types/turn.type';
 import { useAppDispatch } from '../../../store/hooks';
-import { deleteEmployeeTurn } from '../../../store/features/employeeTurn/employeeTurnSlice';
+import { deleteEmployeeTurn, updateEmployeeTurn } from '../../../store/features/employeeTurn/employeeTurnSlice';
 import dayjs from 'dayjs';
 
 type Props = {
@@ -16,15 +16,12 @@ type Props = {
 const EditTurnModal = (props: Props) => {
     const dispatch = useAppDispatch()
     const [turnInfo, setTurnInfo] = useState({} as TurnType)
-
     const [isConfirmDeleteLoading, setIsConfirmDeleteLoading] = useState(false)
-    console.log('====================================');
-    console.log('edit turn: ', props.turnInfo);
-    console.log('====================================');
+
     const handleOk = () => {
         // dispatch(addEmployeeTurn({
         //     employee_id: props.employeeInfo?.id,
-        //     new_turn: turnInputData
+        //     new_turn: turnInfo
         // }))
         props.setVisible(false);
 
@@ -48,9 +45,46 @@ const EditTurnModal = (props: Props) => {
 
     }
 
+    const _onChangePrice = (evt: any) => {
+        setTurnInfo({ ...turnInfo, price: evt?.target?.value })
+    }
+
+    const _onChangeService = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        console.log('====================================');
+        console.log('aaa: ', evt.target.value);
+        console.log('====================================');
+        setTurnInfo({ ...turnInfo, services: evt?.target?.value })
+    }
+
+    const _onChangeStatus = () => {
+        setTurnInfo({ ...turnInfo, is_done: !turnInfo.is_done })
+    }
+
+    const _onChangeStartDate = (value: any) => {
+        setTurnInfo({ ...turnInfo, start_at: value?.$d?.getTime() })
+    }
+
+    const _onChangeEndDate = (value: any) => {
+        setTurnInfo({ ...turnInfo, end_at: value?.$d?.getTime() })
+    }
+
+    const _onChangeTip = (evt: any) => {
+        setTurnInfo({ ...turnInfo, tip: evt?.target?.value })
+    }
+
+
+    const handleUpdateTurn = () => {
+        dispatch(updateEmployeeTurn({
+            employee_id: props.turnInfo.employeeInfo?.id,
+            turn: turnInfo
+        }))
+        handleCancel()
+    }
+
+
     useEffect(() => {
         setTurnInfo(props.turnInfo)
-    }, [turnInfo])
+    }, [props.turnInfo])
 
     return (
         <div>
@@ -73,7 +107,7 @@ const EditTurnModal = (props: Props) => {
                             Delete
                         </Button>
                     </Popconfirm>,
-                    <Button key="Update" onClick={handleOk}>
+                    <Button key="Update" onClick={handleUpdateTurn}>
                         Update
                     </Button>,
                     <Button key="Cancel" onClick={handleCancel}>
@@ -89,7 +123,7 @@ const EditTurnModal = (props: Props) => {
                             id="services"
                             prefix={<DollarCircleOutlined />}
                             value={turnInfo.services}
-                        // onChange={_onChangeService}
+                            onChange={_onChangeService}
                         />
                     </Form.Item>
                     <Form.Item label='Price'>
@@ -98,7 +132,7 @@ const EditTurnModal = (props: Props) => {
                             id="price"
                             prefix={<DollarCircleOutlined />}
                             value={turnInfo?.price}
-                        // onChange={_onChangePrice}
+                            onChange={_onChangePrice}
                         />
                     </Form.Item>
                     <Form.Item label='Tip'>
@@ -107,13 +141,13 @@ const EditTurnModal = (props: Props) => {
                             id="tip"
                             prefix={<DollarCircleOutlined />}
                             value={turnInfo?.tip}
-                        // onChange={_onChangeTip}
+                            onChange={_onChangeTip}
 
                         />
                     </Form.Item>
                     <Form.Item label='Start Time' >
                         <TimePicker
-                            // onSelect={(value) => _onChangeStartDate(value)}
+                            onSelect={(value) => _onChangeStartDate(value)}
                             showSecond={false}
                             // value={new Date(turnInfo?.start_at)}
                             value={dayjs(turnInfo.start_at)}
@@ -121,7 +155,7 @@ const EditTurnModal = (props: Props) => {
                     </Form.Item>
                     <Form.Item label='End Time' >
                         <TimePicker
-                            // onSelect={(value) => _onChangeEndDate(value)}
+                            onSelect={(value) => _onChangeEndDate(value)}
                             // showTime={true}
                             showSecond={false}
                             value={dayjs(turnInfo.end_at)}
@@ -135,7 +169,7 @@ const EditTurnModal = (props: Props) => {
                             checkedChildren="Done"
                             unCheckedChildren="Todo"
                             style={{ background: props.turnInfo?.is_done ? '#1677FF' : 'gray' }}
-                        // onChange={_onChangeStatus}
+                            onChange={_onChangeStatus}
                         />
                     </Space>
 

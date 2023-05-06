@@ -40,11 +40,23 @@ export const createTurnSlice = createSlice({
             let currentEmployee = state.employeeTurns?.find((e: employeeType) => e.id == action.payload.employee_id);
             let newEmployeeTurns = currentEmployee?.turns?.filter((turn: TurnType) => turn?.id != action.payload.turn_id)
             currentEmployee.turns = newEmployeeTurns
+        },
+        updateEmployeeTurn: (state, action) => {
+            let templeEmployeeTurns = state.employeeTurns;
+
+            let currentEmployee = templeEmployeeTurns?.find((e: employeeType) => e.id == action.payload.employee_id);
+            let newTurns = currentEmployee?.turns?.map((turn: TurnType) => {
+                if (turn?.id == action.payload.turn?.id) {
+                    return action.payload?.turn
+                }
+                return turn
+            })
+            currentEmployee.turns = newTurns
         }
     },
 })
 
-export const { setEmployeeTurns, addEmployeeTurn, deleteEmployeeTurn } = createTurnSlice.actions
+export const { setEmployeeTurns, addEmployeeTurn, deleteEmployeeTurn, updateEmployeeTurn } = createTurnSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCount = (state: RootState) => state.employeeTurn
