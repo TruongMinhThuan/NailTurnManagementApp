@@ -5,9 +5,10 @@ import {
     Link,
     Routes,
 } from "react-router-dom";
-import { EmployeeTurnScreen } from '../screens/EmployeeTurn';
+import { EmployeeTurnScreen, TurnCalendarScreen } from '../screens/EmployeeTurn';
 import MenuNavigation from '../components/navbar/MenuNavigation';
 import { HomeScreen } from '../screens/Home';
+import { EmployeeManagementScreen } from '../screens/employee-management';
 
 type Props = {}
 
@@ -16,23 +17,13 @@ const RootRouter = (props: Props) => {
         <Router>
 
             <div>
-                {/* <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/about">About</Link>
-                        </li>
-                        <li>
-                            <Link to="/users">Users</Link>
-                        </li>
-                    </ul>
-                </nav> */}
                 <MenuNavigation />
                 <Routes>
                     <Route path="/home-screen" Component={HomeScreen} />
                     <Route path="/employee-turn-screen" Component={EmployeeTurnScreen} />
+                    <Route path="/employee-management-screen" Component={EmployeeManagementScreen} />
+                    <Route path="/turn-calendar-screen" Component={TurnCalendarScreen} />
+
                 </Routes>
 
                 {/* A <Switch> looks through its children <Route>s and

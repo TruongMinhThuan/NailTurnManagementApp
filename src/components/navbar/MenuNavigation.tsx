@@ -7,14 +7,19 @@ type Props = {}
 
 const items: MenuProps['items'] = [
     {
-        label: (<Link to={'/home-screen'}></Link>),
+        label: (<Link to={'/home-screen'}>Home</Link>),
         key: 'home',
         icon: <HomeOutlined />,
     },
     {
-        label: 'Employees',
+        label: (<Link to={'/employee-management-screen'}>Employee Management</Link>),
         key: 'app',
         icon: <TeamOutlined />,
+    },
+    {
+        // label: (<Link to={'/employee-turn-screen'}>Turns</Link>),
+        label: (<Link to={'/turn-calendar-screen'}>Calender's Turns</Link>),
+        key: 'alipay',
     },
     {
         label: 'Statistic',
@@ -50,10 +55,6 @@ const items: MenuProps['items'] = [
         //         ],
         //     },
         // ],
-    },
-    {
-        label: (<Link to={'/employee-turn-screen'}>Turns</Link>),
-        key: 'alipay',
     },
 ];
 

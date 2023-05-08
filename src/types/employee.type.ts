@@ -8,5 +8,7 @@ export type employeeType = {
     phonenumber?: string;
     email?: string;
     address?: string;
-    turns?: TurnType[] | undefined
+    turns?: TurnType[] | undefined;
+    skills?: any[],
+    key:string
 }
