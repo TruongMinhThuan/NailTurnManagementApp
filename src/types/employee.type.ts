@@ -1,8 +1,8 @@
 import { TurnType } from "./turn.type";
 
 export type employeeType = {
-    id: any;
-    name: string;
+    id?: any;
+    name?: string;
     avatar?: string;
     age?: number;
     phonenumber?: string;
@@ -10,5 +10,5 @@ export type employeeType = {
     address?: string;
     turns?: TurnType[] | undefined;
     skills?: any[],
-    key:string
+    key?:string
 }

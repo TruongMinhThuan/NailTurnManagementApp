@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 type Props = {}
 
 const items: MenuProps['items'] = [
-    {
-        label: (<Link to={'/home-screen'}>Home</Link>),
-        key: 'home',
-        icon: <HomeOutlined />,
-    },
+    // {
+    //     label: (<Link to={'/home-screen'}>Home</Link>),
+    //     key: 'home',
+    //     icon: <HomeOutlined />,
+    // },
     {
         label: (<Link to={'/employee-management-screen'}>Employee Management</Link>),
         key: 'app',
@@ -21,41 +21,41 @@ const items: MenuProps['items'] = [
         label: (<Link to={'/turn-calendar-screen'}>Calender's Turns</Link>),
         key: 'alipay',
     },
-    {
-        label: 'Statistic',
-        key: 'SubMenu',
-        icon: <SnippetsOutlined />,
-        // children: [
-        //     {
-        //         type: 'group',
-        //         label: 'Item 1',
-        //         children: [
-        //             {
-        //                 label: 'Option 1',
-        //                 key: 'setting:1',
-        //             },
-        //             {
-        //                 label: 'Option 2',
-        //                 key: 'setting:2',
-        //             },
-        //         ],
-        //     },
-        //     {
-        //         type: 'group',
-        //         label: 'Item 2',
-        //         children: [
-        //             {
-        //                 label: 'Option 3',
-        //                 key: 'setting:3',
-        //             },
-        //             {
-        //                 label: 'Option 4',
-        //                 key: 'setting:4',
-        //             },
-        //         ],
-        //     },
-        // ],
-    },
+    // {
+    //     label: 'Statistic',
+    //     key: 'SubMenu',
+    //     icon: <SnippetsOutlined />,
+    //     // children: [
+    //     //     {
+    //     //         type: 'group',
+    //     //         label: 'Item 1',
+    //     //         children: [
+    //     //             {
+    //     //                 label: 'Option 1',
+    //     //                 key: 'setting:1',
+    //     //             },
+    //     //             {
+    //     //                 label: 'Option 2',
+    //     //                 key: 'setting:2',
+    //     //             },
+    //     //         ],
+    //     //     },
+    //     //     {
+    //     //         type: 'group',
+    //     //         label: 'Item 2',
+    //     //         children: [
+    //     //             {
+    //     //                 label: 'Option 3',
+    //     //                 key: 'setting:3',
+    //     //             },
+    //     //             {
+    //     //                 label: 'Option 4',
+    //     //                 key: 'setting:4',
+    //     //             },
+    //     //         ],
+    //     //     },
+    //     // ],
+    // },
 ];
 
 

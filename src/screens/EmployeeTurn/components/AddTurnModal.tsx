@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { addEmployeeTurn } from '../../../store/features/employeeTurn/employeeTurnSlice'
 import { employeeType } from '../../../types/employee.type';
 import helpers from '../../../helpers/helpers';
+import { firebaseService } from '../../../services';
 
 type Props = {
     setVisible: (value: boolean) => void;
@@ -18,7 +19,8 @@ type Props = {
 const AddTurnModal = ({ isVisible = false, ...props }: Props) => {
     const [turnInputData, setTurnInputData] = useState({} as TurnType)
 
-    const handleOk = () => {
+    const handleOk = async () => {
+        await firebaseService.addData()
         let turnId = helpers.getIdByTime()
 
         dispatch(addEmployeeTurn({

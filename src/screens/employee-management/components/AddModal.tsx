@@ -9,6 +9,7 @@ import { employeeType } from '../../../types/employee.type';
 import helpers from '../../../helpers/helpers';
 import react from '@vitejs/plugin-react';
 import { addNewEmployee } from '../../../store/features/employeeManagement/employeeManagementSlice';
+import employeeService from '../../../services/employee.service';
 
 type Props = {
     setVisible?: (value: boolean) => void;
@@ -50,10 +51,11 @@ const AddModal = ({ isVisible = false, ...props }: Props) => {
         setEmployeeInfo({ ...employeeInfo, phonenumber: evt?.target?.value })
     }
 
-    const handleAddNewEmployee = () => {
+    const handleAddNewEmployee = async () => {
         let key = helpers.getIdByTime().toString()
         dispatch(addNewEmployee({ ...employeeInfo, key }))
         handleCancel()
+        await employeeService.addEmployee(employeeInfo)
     }
 
 

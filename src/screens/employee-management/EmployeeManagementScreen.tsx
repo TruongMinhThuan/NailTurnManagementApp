@@ -10,6 +10,7 @@ import { employeeType } from '../../types/employee.type';
 import { setEmployeeList } from '../../store/features/employeeManagement/employeeManagementSlice';
 import EditModal from './components/EditModal';
 import EmployeeTable from '../../components/tables/employee/EmployeeTable';
+import employeeService from '../../services/employee.service';
 
 type Props = {}
 
@@ -67,7 +68,11 @@ const EmployeeManagementScreen = (props: Props) => {
     const { employeeList } = useAppSelector((state: RootState) => state.employeeManagement)
     const dispatch = useAppDispatch()
     useEffect(() => {
-        dispatch(setEmployeeList(data))
+        employeeService.getEmployee()
+            .then(res => {
+                console.log('res:: ', res);
+                dispatch(setEmployeeList(res))
+            })
     }, [])
 
 
